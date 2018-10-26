@@ -1,0 +1,143 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Información de clase</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- css -->
+	<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'color/default.css' %}" rel="stylesheet">
+	<!--[if lt IE 7]>
+    <link href="{% static 'css/font-awesome-ie7.css' %}" type="text/css" rel="stylesheet">
+  <![endif]-->
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+
+	<!-- =======================================================
+		Theme Name: Maxim
+		Theme URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
+		Author: BootstrapMade.com
+		Author URL: https://bootstrapmade.com
+	======================================================= -->
+
+</head>
+
+<body>
+	<!-- navbar -->
+	<div class="navbar-wrapper">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<!-- Responsive navbar -->
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</a>
+					<h1 class="brand"><img src="{% static 'img/buscando.ico' %}" alt="" /><a href="http://piratesaurus.com">En busca del profe perdido</a></h1>
+					<!-- navigation -->
+					<nav class="pull-right nav-collapse collapse">
+						<ul id="menu-main" class="nav">
+							<li><a title="team" href="http://piratesaurus.com#header-wrapper">Inicio</a></li>
+							<li><a title="services" href="http://piratesaurus.com#busqueda">Buscar profesor</a></li>
+                            <li><a title="services" href="http://piratesaurus.com#busquedaClase">Buscar clase</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<section class="spacer green">
+		<div class="container">
+			<div class="row">
+				<div class="span12 aligncenter flyUp">
+					<h2 class="pagetitle">Clase <strong>"{{clase.subject}}"</strong></h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end spacer section -->
+	<!-- section: team -->
+	<section id="maincontent" class="inner">
+		<div class="container">
+			<div class="row">
+					<table >
+                          <thead>
+                            <tr>
+                              <th>Profesor</th>
+                              <th>Edificio</th>
+                              <th>Aula</th>
+                              <th>Día</th>
+                              <th>Inicio</th>
+                              <th>Fin</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>{{clase.teacher}}</td>
+                                  <td>{{clase.building}}</td>
+                                  <td>{{clase.number}}</td>
+                                  <td>{{clase.day}}</td>
+                                  <td>{{clase.startTime}}</td>
+                                  <td>{{clase.endTime}}</td>
+                              </tr>
+                          </tbody>
+                    </table>
+            </div>
+        </div>
+    </section>
+					
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="span6 offset3">
+					<ul class="social-networks">
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-instagram icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-twitter icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-dribbble icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-pinterest icon-2x"></i></a></li>
+					</ul>
+					<p class="copyright">
+						&copy; Maxim Theme. All rights reserved.
+						<div class="credits">
+							<!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Maxim
+              -->
+							Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+						</div>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- ./container -->
+	</footer>
+	<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
+	<script src="{% static 'js/jquery.nav.js' %}"></script>
+	<script src="{% static 'js/jquery.localScroll.js' %}"></script>
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+	<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+	<script src="{% static 'js/isotope.js' %}"></script>
+	<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+	<script src="{% static 'js/inview.js' %}"></script>
+	<script src="{% static 'js/animate.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+	<script src="{% static 'js/jquery.tweet.js' %}"></script>
+</body>
+
+</html>

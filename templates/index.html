@@ -1,0 +1,241 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>En busca del profe perdido</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+</head>
+
+<body>
+	<!-- navbar -->
+	<div class="navbar-wrapper">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<!-- Responsive navbar -->
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</a>
+					<h1 class="brand"><img src="{% static 'img/buscando.ico' %}" alt="" /><a href="index.html">En busca del profe perdido</a></h1>
+					<!-- navigation -->
+					<nav class="pull-right nav-collapse collapse">
+						<ul id="menu-main" class="nav">
+							<li><a title="team" href="#header-wrapper">Inicio</a></li>
+							<li><a title="services" href="#busqueda">Buscar profesor</a></li>
+                            <li><a title="services" href="#busquedaClase">Buscar clase</a></li>
+							
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Header area -->
+	<div id="header-wrapper" class="header-slider">
+		<header class="clearfix">
+			<div class="logo">
+				<img src="{% static 'img/lupa1.png' %}" alt="" />
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="span12">
+						<div id="main-flexslider" class="flexslider">
+							<ul class="slides">
+								<li>
+									<p class="home-slide-content">
+										Encuentra a tu <strong>profesor</strong> 
+									</p>
+								</li>
+								<li>
+									<p class="home-slide-content">
+										Encuentra tu <strong>aula</strong>
+									</p>
+								</li>
+								<li>
+									<p class="home-slide-content">
+										Encuentra tu <strong>edificio</strong>
+									</p>
+								</li>
+							</ul>
+						</div>
+						<!-- end slider -->
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+    
+    <!-- Búsqueda de profesor -->
+    <section id="busqueda" class="section green">
+		<div class="container">
+			<br><h4>Buscar profesor</h4>
+			<p class="descripcion">
+				Aquí puedes ingresar el nombre y horario del profesor a buscar.
+			</p> <br>
+			<div class="row">
+				<div class="span12">
+					<div class="cform" id="contact-form">
+						<!-- Este form envía nombre de maestro, día y hora de su clase -->
+                        <form action="{% url 'buscar:buscarProfe' %}" method="POST">
+							{% csrf_token %}
+                            <div class="datos">
+                                <input type="text" name="nombres" class="form-control" id="nombres" placeholder="Nombres" data-rule="minlen:4" data-msg="Por favor ingresa al menos 4 caracteres" required/>
+                            </div>                           
+                            <div class="datosHorario">
+                                <input type="date" class="form-control", name="dia" id="diaBP" placeholder="dd/mm/aaaa" data-rule="minlen:4">
+                                <input type="time" class="form-control", name="horario" id="horarioBP" placeholder="00:00" data-rule="minlen:4">
+                            </div>                            
+                                                        
+                            <div class ="boton">
+                                <input id="buscar_btnBP" type="submit" value="Buscar" class="btn btn-theme pull-left">
+                            </div>                                
+						</form>
+                        <!--Termina form-->
+					</div>
+				</div>
+				<!-- ./span12 -->
+			</div>
+			{% if profeNotFound %}
+				<div class="alert alert-danger text-center" role="alert">
+				  	No se encontro ningun profesor con el nombre <b>{{profeNotFound}}</b>
+				</div>
+			{% endif %}
+		</div>
+	</section>    
+    <!-- Termina búsqueda de profesor -->
+    
+    <!--Inicia búsqueda clases-->
+    <section id="busquedaClase" class="section orange">
+		<div class="container">
+			<br><h4>Buscar clases</h4>
+			<p class="descripcion">
+				Aquí puedes ingresar el aula y edificio de la clase a buscar.
+			</p> <br>
+			<div class="row">
+				<div class="span12">
+					<div class="cform" id="contact-form">
+                        <!--Este form envía edificio, aula, hora y dia de una clase-->
+						<form action="{% url 'buscar:buscarClase' %}" method="POST">
+							{%csrf_token%}
+                            <div class="datos">
+                                <input type="text" class="form-control" name="edificio" id="edificio" placeholder="Edificio" data-rule="edificio" data-msg="Ingresa un edificio válido" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="datos">
+                                <input type="text" class="form-control" name="aula" id="aula" placeholder="Aula" data-rule="minlen:4" data-msg="Por favor ingresa un aula válida" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="datosHorario">
+                                <input type="date" class="form-control", name="dia" id="dia" placeholder="dd/mm/aaaa" data-rule="minlen:4">
+                                <div class="validation"></div>
+                                <input type="time" class="form-control", name="horario" id="horario" placeholder="00:00" data-rule="minlen:4">
+                                <div class="validation"></div>
+                            </div>                            
+                                                        
+                            <div class ="botonClases">
+                                <input id= "buscar_btn" type="submit" value="Buscar" class="btn btn-clases pull-left" >
+                            </div>                                
+						</form>
+                        <!--Termina form-->
+					</div>
+				</div>
+				<!-- ./span12 -->
+			</div>
+		</div>
+	</section>    
+    <!--Termina búsqueda clases-->
+    
+    <!-- section: services -->
+	<section id="informacion" class="section">
+		<div class="container">
+            
+            <h4>Información</h4>
+			<div class="row">
+				<div class="info">
+					<div class="people">
+						<img class="team-thumb img-circle" src="{% static 'img/team/profesor.png' %}" alt="" />
+						<h3>John Doe</h3>
+					</div>
+				</div>
+				<div class="info">
+					<div class="people">
+						<img class="team-thumb img-circle" src="{% static 'img/team/escuela.png' %}" alt="" />
+						<h3>UdeG</h3>
+					</div>
+				</div>
+				<div class="info">
+					<div class="people">
+						<img class="team-thumb img-circle" src="{% static 'img/team/escritorio.png' %}" alt="" />
+						<h3>Aula</h3>
+					</div>
+				</div>
+				<div class="info">
+					<div class="people">
+						<img class="team-thumb img-circle" src="{% static 'img/team/calendario.png' %}" alt="" />
+                        <h3>Horario</h3>
+					</div>
+				</div>				
+			</div>                        			
+		</div>
+	</section>
+	<!-- end section: services -->
+    
+    
+    
+
+	<!-- spacer section -->
+	<section class="spacer bg3">
+		<div class="container">
+			<div class="row">
+				<div class="span12 aligncenter flyLeft">
+					<p class="large">
+						¡Sigue buscando a tus profes favoritos!
+                    </p>
+				</div>
+				<div class="span12 aligncenter flyRight">
+					<i class="icon-rocket icon-10x"></i>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end spacer section -->	
+	<footer>
+		<div >
+			<div class="row">
+				<div class="span6 offset3">
+					<ul class="social-networks">
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-instagram icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-twitter icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-dribbble icon-2x"></i></a></li>
+						<li><a href="#"><i class="icon-circled icon-bgdark icon-pinterest icon-2x"></i></a></li>
+					</ul>				
+				</div>
+			</div>
+		</div>
+		<!-- ./container -->
+	</footer>
+	<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bgdark icon-2x"></i></a>
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
+	<script src="{% static 'js/jquery.nav.js' %}"></script>
+	<script src="{% static 'js/jquery.localScroll.js' %}"></script>
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+	<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+	<script src="{% static 'js/isotope.js' %}"></script>
+	<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+	<script src="{% static 'js/inview.js' %}"></script>
+	<script src="{% static 'js/animate.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+	<script src="{% static 'contactform/contactform.js' %}"></script>
+
+</body>
+
+</html>
